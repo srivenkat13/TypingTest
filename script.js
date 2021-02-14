@@ -6,6 +6,7 @@ const theTimer = document.querySelector(".timer");
 
 var timer = [0, 0, 0, 0];
 // we want minutes second and milliseconds  along with a variable so we go for array
+var interval;
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
 function leadingZero(time) {
@@ -37,6 +38,7 @@ function spellCheck() {
     let originTextMatch = originText.substring(0, textEntered.length);
 
     if (textEntered == originText) {
+        clearInterval(interval);//this will stop the timer when the test is done correctly.
         testWrapper.style.borderColor = "black";//if test is done perfectly it gives black.
     } else {
         if (textEntered == originTextMatch) {
@@ -51,9 +53,9 @@ function spellCheck() {
 function start() {
     let textEnteredLenght = testArea.value.length;
     if (textEnteredLenght === 0) {
-        setInterval(runTimer, 10);
+        interval = setInterval(runTimer, 10);
     }
-    console.log(textEnteredLenght);
+    // console.log(textEnteredLenght);
 }
 // Reset everything:
 function reset() {
