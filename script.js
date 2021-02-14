@@ -7,6 +7,7 @@ const theTimer = document.querySelector(".timer");
 var timer = [0, 0, 0, 0];
 // we want minutes second and milliseconds  along with a variable so we go for array
 var interval;
+var timmerRunning = false;
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
 function leadingZero(time) {
@@ -52,14 +53,22 @@ function spellCheck() {
 // Start the timer:
 function start() {
     let textEnteredLenght = testArea.value.length;
-    if (textEnteredLenght === 0) {
+    if (textEnteredLenght === 0 && !timmerRunning) {
+        timmerRunning = true; // this lets the timer stick there until reset it given, else when other text is entered it keeps running
         interval = setInterval(runTimer, 10);
     }
     // console.log(textEnteredLenght);
 }
 // Reset everything:
 function reset() {
-    console.log("Reset button has been pressed!");
+    clearInterval(interval);
+    interval= null;
+    timer = [0,0,0,0];
+    timmerRunning = false;
+    
+    testArea.value = "";
+    theTimer.innerHTML = "00:00:00";
+    testWrapper.style.borderColor = "grey";
 }
 // Event listeners for keyboard input and the reset button:
 testArea.addEventListener("keypress", start, false);

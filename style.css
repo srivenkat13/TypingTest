@@ -129,12 +129,15 @@ body {
 .intro p,
 .test-area {
     margin: 0 auto;
-    max-width: 550px;
+    max-width: 750px;
 }
 
 .test-area {
     margin-bottom: 4em;
     padding: 0 2em;
+}
+textarea#test-area{
+    outline:none;
 }
 
 .test-wrapper {
@@ -176,6 +179,8 @@ body {
 #reset {
     padding: .5em 1em;
     font-size: 1.2em;
+    border-radius: 1rem;
+    outline: none;
     font-weight: bold;
     color: #E95D0F;
     background: white ;
