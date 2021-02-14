@@ -8,8 +8,8 @@ var timer = [0, 0, 0, 0];
 // we want minutes second and milliseconds  along with a variable so we go for array
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
-function leadingZero (time){
-    if( time <= 9){
+function leadingZero(time) {
+    if (time <= 9) {
         time = "0" + time;
     }
     return time
@@ -17,15 +17,15 @@ function leadingZero (time){
 
 // Run a standard minute/second/hundredths timer:
 function runTimer() {
-    let currentTime = leadingZero(timer[0]) + ":" +leadingZero(timer[1]) + ":" +leadingZero( timer[2]);
+    let currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + ":" + leadingZero(timer[2]);
     theTimer.innerHTML = currentTime;
     timer[3]++;
 
-    timer[0] = Math.floor((timer[3]/100/60));//minutes
+    timer[0] = Math.floor((timer[3] / 100 / 60));//minutes
     //first the counter/100 gives seconds and seconds/60 gives minutes 
-    timer[1] = Math.floor((timer[3]/100) - (timer[0]*60)); // seconds
+    timer[1] = Math.floor((timer[3] / 100) - (timer[0] * 60)); // seconds
     //first we get pure seconds and minutes are substracted so that everytime we hit a minute this counter goes back to zero
-    timer[2] = Math.floor((timer[3] -(timer[1]*100)- (timer[0]*60*100))); // milliseconds
+    timer[2] = Math.floor((timer[3] - (timer[1] * 100) - (timer[0] * 60 * 100))); // milliseconds
     //  first we get pure milliseconds and substract everytime we hit a second also every time a minute is hit
 
 }
@@ -34,7 +34,17 @@ function runTimer() {
 // Match the text entered with the provided text on the page:
 function spellCheck() {
     let textEntered = testArea.value;
-    console.log(textEntered);
+    let originTextMatch = originText.substring(0, textEntered.length);
+
+    if (textEntered == originText) {
+        testWrapper.style.borderColor = "black";//if test is done perfectly it gives black.
+    } else {
+        if (textEntered == originTextMatch) {
+            testWrapper.style.borderColor = "green";// if the subString matches it gives green
+        } else {
+            testWrapper.style.borderColor = "red";//else it will give red
+        }
+    }
 }
 
 // Start the timer:
